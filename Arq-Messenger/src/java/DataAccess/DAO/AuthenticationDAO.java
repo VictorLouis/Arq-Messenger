@@ -65,8 +65,13 @@ public class AuthenticationDAO {
     public Authentication searchUserLogin(String email, String password) {
            EntityManager em = emf1.createEntityManager();
            Authentication account = null;
-           String peticion = "select a from Authentication a INNER JOIN User ON User.ID=a.IdUser where User.email = " + email + " AND a.password = '"+password+"'";
+           String peticion = "SELECT a FROM Authentication a INNER JOIN a.user u WHERE u.email = '" + email + "' AND a.password = '"+password+"'";
+           System.out.println("Ayudaa!!! antes Q");
+           System.out.println(email);
+           System.out.println(password);
            Query q = em.createQuery(peticion);
+           System.out.println(q.toString());
+           System.out.println("Ayudaa!!!");
            try {
                account = (Authentication) q.getSingleResult();
            } catch (Exception e){

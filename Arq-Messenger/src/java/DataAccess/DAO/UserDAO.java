@@ -17,7 +17,7 @@ import javax.persistence.Query;
  */
 public class UserDAO {
 
-    public EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("MessengerUN");
+    public EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("MessengerUNPU");
     public User persist(User account) {
         EntityManager em = emf1.createEntityManager();
         em.getTransaction().begin();

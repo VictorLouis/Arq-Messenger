@@ -12,9 +12,9 @@ import java.io.Serializable ;
  * @author arqsoft2017i
  */
 public class Login implements Serializable { 
-    public String login ( String document, String password ) { 
+    public String login (String email, String password ) { 
         AuthenticationDAO accountDAO = new AuthenticationDAO ( ) ; 
-        Authentication accountE = accountDAO.searchUserLogin(document, password ) ; 
+        Authentication accountE = accountDAO.searchUserLogin(email, password ) ; 
        
         if ( accountE != null ) 
             return "Welcome " + accountE. getIdUser(); 

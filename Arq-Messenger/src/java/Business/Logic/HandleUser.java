@@ -21,10 +21,10 @@ public class HandleUser {
         UserDAO userDAO = new UserDAO ( ) ; 
         AuthenticationDAO authenticationDAO = new AuthenticationDAO ( ) ; 
         Authentication authenticationE = authenticationDAO. persist (authentication) ; 
+        User userE = userDAO. persist (user) ;
         
-        User userE = userDAO. persist (user) ; 
         if ( userE != null && authenticationE !=null ) 
-            return "la cuenta ha sido creada su Id de Usuario es " + user. getId ( ) + "." ; 
+            return "la cuenta ha sido creada su Id de Usuario es " + user. getName()+ "." ; 
         else 
             return "la cuenta no pudo ser creada." ;  
     } 
