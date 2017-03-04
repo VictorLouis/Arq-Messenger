@@ -6,8 +6,6 @@
 package DataAccess.DAO;
 import DataAccess.Entity.Authentication;
 import java.math.BigInteger;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

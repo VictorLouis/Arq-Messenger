@@ -64,9 +64,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `messengerDB`.`Authentication` (
   `Password` VARCHAR(45) NOT NULL,
-  `User_Id` INT NOT NULL,
-  PRIMARY KEY (`User_Id`),
+  `User_Id` INT NOT NULL AUTO_INCREMENT,
   INDEX `fk_Authentication_User1_idx` (`User_Id` ASC),
+  PRIMARY KEY (`User_Id`),
   CONSTRAINT `fk_Authentication_User1`
     FOREIGN KEY (`User_Id`)
     REFERENCES `messengerDB`.`User` (`Id`)
