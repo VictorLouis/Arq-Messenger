@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author arqsoft2017i
+ * @author carlos
  */
 @Entity
 @Table(name = "Event")
@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.eventPK.id = :id")
     , @NamedQuery(name = "Event.findByNombre", query = "SELECT e FROM Event e WHERE e.nombre = :nombre")
     , @NamedQuery(name = "Event.findByDescripcion", query = "SELECT e FROM Event e WHERE e.descripcion = :descripcion")
-    , @NamedQuery(name = "Event.findByIdUser", query = "SELECT e FROM Event e WHERE e.eventPK.idUser = :idUser")})
+    , @NamedQuery(name = "Event.findByUserId", query = "SELECT e FROM Event e WHERE e.eventPK.userId = :userId")})
 public class Event implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,7 +47,7 @@ public class Event implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "Descripcion")
     private String descripcion;
-    @JoinColumn(name = "IdUser", referencedColumnName = "Id", insertable = false, updatable = false)
+    @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private User user;
 
@@ -64,8 +64,8 @@ public class Event implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Event(int id, int idUser) {
-        this.eventPK = new EventPK(id, idUser);
+    public Event(int id, int userId) {
+        this.eventPK = new EventPK(id, userId);
     }
 
     public EventPK getEventPK() {

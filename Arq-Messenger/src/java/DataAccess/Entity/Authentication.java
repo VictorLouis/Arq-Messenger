@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package DataAccess.Entity;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.*;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -21,64 +25,59 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author arqsoft2017i
+ * @author carlos
  */
 @Entity
 @Table(name = "Authentication")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Authentication.findAll", query = "SELECT a FROM Authentication a")
-    , @NamedQuery(name = "Authentication.findById", query = "SELECT a FROM Authentication a WHERE a.id = :id")
     , @NamedQuery(name = "Authentication.findByPassword", query = "SELECT a FROM Authentication a WHERE a.password = :password")
-    , @NamedQuery(name = "Authentication.findByLastConnection", query = "SELECT a FROM Authentication a WHERE a.lastConnection = :lastConnection")
-    , @NamedQuery(name = "Authentication.findByIdUser", query = "SELECT a FROM Authentication a WHERE a.idUser = :idUser")})
+    , @NamedQuery(name = "Authentication.findByUserId", query = "SELECT a FROM Authentication a WHERE a.userId = :userId")})
 public class Authentication implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Id")
-    private int id;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "Password")
     private String password;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "LastConnection")
-    private String lastConnection;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "IdUser")
-    private Integer idUser;
-    @JoinColumn(name = "IdUser", referencedColumnName = "Id", insertable = false, updatable = false)
+    @Column(name = "User_Id")
+    private Integer userId;
+    @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private User user;
 
     public Authentication() {
     }
 
-    public Authentication(Integer idUser) {
-        this.idUser = idUser;
+    public Authentication(Integer userId) {
+        this.userId = userId;
     }
 
-    public Authentication(Integer idUser, int id, String password, String lastConnection) {
-        this.idUser = idUser;
-        this.id = id;
+    public Authentication(Integer userId, String password) {
+        this.userId = userId;
         this.password = password;
-        this.lastConnection = lastConnection;
     }
-
-    public int getId() {
-        return id;
+    
+    
+    public boolean isValidEmailAdress(String email){
+        boolean result = true;
+        try{
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        }
+        catch (AddressException ex){
+            result = false;
+        }
+        return result;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
+    
+    
 
     public String getPassword() {
         return password;
@@ -88,20 +87,12 @@ public class Authentication implements Serializable {
         this.password = password;
     }
 
-    public String getLastConnection() {
-        return lastConnection;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setLastConnection(String lastConnection) {
-        this.lastConnection = lastConnection;
-    }
-
-    public Integer getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public User getUser() {
@@ -115,7 +106,7 @@ public class Authentication implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUser != null ? idUser.hashCode() : 0);
+        hash += (userId != null ? userId.hashCode() : 0);
         return hash;
     }
 
@@ -126,7 +117,7 @@ public class Authentication implements Serializable {
             return false;
         }
         Authentication other = (Authentication) object;
-        if ((this.idUser == null && other.idUser != null) || (this.idUser != null && !this.idUser.equals(other.idUser))) {
+        if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
             return false;
         }
         return true;
@@ -134,7 +125,7 @@ public class Authentication implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entity.Authentication[ idUser=" + idUser + " ]";
+        return "DataAccess.Entity.Authentication[ userId=" + userId + " ]";
     }
     
 }

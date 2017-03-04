@@ -13,26 +13,25 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author arqsoft2017i
+ * @author carlos
  */
 @Embeddable
 public class EventPK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Id")
     private int id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IdUser")
-    private int idUser;
+    @Column(name = "User_Id")
+    private int userId;
 
     public EventPK() {
     }
 
-    public EventPK(int id, int idUser) {
+    public EventPK(int id, int userId) {
         this.id = id;
-        this.idUser = idUser;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -43,19 +42,19 @@ public class EventPK implements Serializable {
         this.id = id;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) id;
-        hash += (int) idUser;
+        hash += (int) userId;
         return hash;
     }
 
@@ -69,7 +68,7 @@ public class EventPK implements Serializable {
         if (this.id != other.id) {
             return false;
         }
-        if (this.idUser != other.idUser) {
+        if (this.userId != other.userId) {
             return false;
         }
         return true;
@@ -77,7 +76,7 @@ public class EventPK implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entity.EventPK[ id=" + id + ", idUser=" + idUser + " ]";
+        return "DataAccess.Entity.EventPK[ id=" + id + ", userId=" + userId + " ]";
     }
     
 }

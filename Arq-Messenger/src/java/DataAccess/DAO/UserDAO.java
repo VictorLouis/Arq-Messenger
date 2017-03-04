@@ -35,7 +35,7 @@ public class UserDAO {
     public User searchUser(String email, String password) {
            EntityManager em = emf1.createEntityManager();
            User account = null;
-           String peticion = "select a from User a where a.email = " + email + " AND a.password = '"+password+"'";
+           String peticion = "select u from User u where u.email = " + email + " AND a.password = '"+password+"'";
            Query q = em.createQuery(peticion);
            try {
                account = (User) q.getSingleResult();

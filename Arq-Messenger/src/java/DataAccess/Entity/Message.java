@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author arqsoft2017i
+ * @author carlos
  */
 @Entity
 @Table(name = "Message")
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.messagePK.id = :id")
     , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")
     , @NamedQuery(name = "Message.findByIdConversation", query = "SELECT m FROM Message m WHERE m.messagePK.idConversation = :idConversation")
-    , @NamedQuery(name = "Message.findByIdUser", query = "SELECT m FROM Message m WHERE m.messagePK.idUser = :idUser")})
+    , @NamedQuery(name = "Message.findByUserId", query = "SELECT m FROM Message m WHERE m.messagePK.userId = :userId")})
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +52,7 @@ public class Message implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "Text")
     private String text;
-    @JoinColumn(name = "IdUser", referencedColumnName = "Id", insertable = false, updatable = false)
+    @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private User user;
     @JoinColumn(name = "IdConversation", referencedColumnName = "Id", insertable = false, updatable = false)
@@ -72,8 +72,8 @@ public class Message implements Serializable {
         this.text = text;
     }
 
-    public Message(int id, int idConversation, int idUser) {
-        this.messagePK = new MessagePK(id, idConversation, idUser);
+    public Message(int id, int idConversation, int userId) {
+        this.messagePK = new MessagePK(id, idConversation, userId);
     }
 
     public MessagePK getMessagePK() {

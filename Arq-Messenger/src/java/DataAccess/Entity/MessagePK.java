@@ -13,13 +13,12 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author arqsoft2017i
+ * @author carlos
  */
 @Embeddable
 public class MessagePK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Id")
     private int id;
     @Basic(optional = false)
@@ -28,16 +27,16 @@ public class MessagePK implements Serializable {
     private int idConversation;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IdUser")
-    private int idUser;
+    @Column(name = "User_Id")
+    private int userId;
 
     public MessagePK() {
     }
 
-    public MessagePK(int id, int idConversation, int idUser) {
+    public MessagePK(int id, int idConversation, int userId) {
         this.id = id;
         this.idConversation = idConversation;
-        this.idUser = idUser;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -56,12 +55,12 @@ public class MessagePK implements Serializable {
         this.idConversation = idConversation;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -69,7 +68,7 @@ public class MessagePK implements Serializable {
         int hash = 0;
         hash += (int) id;
         hash += (int) idConversation;
-        hash += (int) idUser;
+        hash += (int) userId;
         return hash;
     }
 
@@ -86,7 +85,7 @@ public class MessagePK implements Serializable {
         if (this.idConversation != other.idConversation) {
             return false;
         }
-        if (this.idUser != other.idUser) {
+        if (this.userId != other.userId) {
             return false;
         }
         return true;
@@ -94,7 +93,7 @@ public class MessagePK implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entity.MessagePK[ id=" + id + ", idConversation=" + idConversation + ", idUser=" + idUser + " ]";
+        return "DataAccess.Entity.MessagePK[ id=" + id + ", idConversation=" + idConversation + ", userId=" + userId + " ]";
     }
     
 }

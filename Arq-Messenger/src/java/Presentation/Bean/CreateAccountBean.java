@@ -68,7 +68,9 @@ public class CreateAccountBean {
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
     }
-
+    public String error(){
+     return "Formato de correo invalido";   
+    }
     /**
      * @return the message
      */

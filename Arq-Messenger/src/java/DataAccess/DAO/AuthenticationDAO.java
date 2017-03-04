@@ -6,6 +6,8 @@
 package DataAccess.DAO;
 import DataAccess.Entity.Authentication;
 import java.math.BigInteger;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -47,7 +49,6 @@ public class AuthenticationDAO {
         return authentication;
     }
     
-    
     public Authentication searchByDocument(BigInteger document) {
         EntityManager em = emf1.createEntityManager();
         Authentication authentication = null;
@@ -66,12 +67,9 @@ public class AuthenticationDAO {
            EntityManager em = emf1.createEntityManager();
            Authentication account = null;
            String peticion = "SELECT a FROM Authentication a INNER JOIN a.user u WHERE u.email = '" + email + "' AND a.password = '"+password+"'";
-           System.out.println("Ayudaa!!! antes Q");
-           System.out.println(email);
-           System.out.println(password);
            Query q = em.createQuery(peticion);
-           System.out.println(q.toString());
-           System.out.println("Ayudaa!!!");
+       
+       
            try {
                account = (Authentication) q.getSingleResult();
            } catch (Exception e){

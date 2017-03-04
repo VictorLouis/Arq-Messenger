@@ -17,7 +17,7 @@ public class Login implements Serializable {
         Authentication accountE = accountDAO.searchUserLogin(email, password ) ; 
        
         if ( accountE != null ) 
-            return "Welcome " + accountE. getIdUser(); 
+            return "Welcome " + accountE. getUserId(); 
         else 
             return "User not found" ; 
     } 
