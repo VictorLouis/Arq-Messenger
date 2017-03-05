@@ -22,6 +22,7 @@ public class CreateAccountBean {
     private String name;
     private String email;
     private String passwordUser;
+    private String passwordUser2;
     private String message;
 
     public CreateAccountBean() {
@@ -87,6 +88,6 @@ public class CreateAccountBean {
     
     public void createAccount() {
         HandleUser createUser = new HandleUser();
-        message = createUser.createAccount(name, passwordUser, email);
+        message = createUser.createAccount(name, passwordUser, passwordUser2, email);
     }
 }

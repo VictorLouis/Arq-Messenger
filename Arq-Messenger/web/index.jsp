@@ -33,11 +33,11 @@
                         <form action="LoginServlet" method="post">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Correo</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="user">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -50,22 +50,22 @@
                         </form>
                     </div>
                     <div role="tabpanel" class="tab-pane panel-body" id="registrar">
-                        <form>
+                        <form action="CreateAccountServlet" method="post">
                             <div class="form-group">
                                 <label for="nombreTxt">Nombre</label>
-                                <input type="email" class="form-control" id="nombreTxt" placeholder="Email">
+                                <input type="text" class="form-control" id="nombreTxt" placeholder="nombre" name="userR">
                             </div>
                             <div class="form-group">
                                 <label for="correoTxt">Correo</label>
-                                <input type="email" class="form-control" id="correoTxt" placeholder="Email">
+                                <input type="email" class="form-control" id="correoTxt" placeholder="Email"  name="emailR">
                             </div>
                             <div class="form-group">
                                 <label for="passwordTxt">Contraseña</label>
-                                <input type="password" class="form-control" id="passwordText" placeholder="Password">
+                                <input type="password" class="form-control" id="passwordText" placeholder="Password" name="pwdR">
                             </div>
                             <div class="form-group">
                                 <label for="passwordConfirmTxt">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" id="passwordText" placeholder="Password">
+                                <input type="password" class="form-control" id="passwordText2" placeholder="Password" name="pwd2R">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Registrar</button>

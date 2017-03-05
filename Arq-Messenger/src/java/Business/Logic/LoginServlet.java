@@ -54,9 +54,9 @@ public class LoginServlet extends HttpServlet{
 			//setting cookie to expiry in 30 mins
 			loginCookie.setMaxAge(30*60);
 			response.addCookie(loginCookie);
-			response.sendRedirect("LoginSuccess.jsp");
+			response.sendRedirect("messenger.jsp");
 		}else{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/loginServ.html");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
 			PrintWriter out= response.getWriter();
 			out.println("<font color=red>Either user name or password is wrong.</font>");
 			rd.include(request, response);

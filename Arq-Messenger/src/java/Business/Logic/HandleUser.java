@@ -10,7 +10,7 @@ import DataAccess.Entity.Authentication ;
  */ 
 public class HandleUser { 
      
-    public String createAccount ( String name, String passwordUser, String email ) { 
+    public String createAccount ( String name, String passwordUser, String passwordUser2, String email ) { 
         User user = new User ( ) ; 
         Authentication authentication = new Authentication();
         user. setName ( name ) ; 
@@ -26,7 +26,14 @@ public class HandleUser {
         else{
             return "Error la contraseña debe ser de mas de 8 caracteres. ";
         }
-
+        if (passwordUser.equals(passwordUser2)){
+        authentication. setPassword (passwordUser);
+        }
+        else{
+            return "Error las contraseña deben ser iguales. ";
+        }
+        System.out.println(name + passwordUser + passwordUser2 + email);
+        
         UserDAO userDAO = new UserDAO ( ) ; 
         AuthenticationDAO authenticationDAO = new AuthenticationDAO ( ) ; 
         

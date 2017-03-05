@@ -16,12 +16,22 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     </head>
     <body>
+        <%
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+	if(cookie.getName().equals("user")) userName = cookie.getValue();
+}
+}
+if(userName == null) response.sendRedirect("index.jsp");
+%>
         <div class="h100">
             <div class="areaMain">
                 <div class="areaContacts">
                     <div class="list-group">
                         <a href="#" class="list-group-item active">
-                            Victor
+                            Victor El Pro
                         </a>
                         <a href="#" class="list-group-item">Alex</a>
                         <a href="#" class="list-group-item">Carlos</a>
@@ -45,9 +55,10 @@
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Messenger</a>
+                    <a class="navbar-brand" href="#">Hola <%=userName %></a>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Cerrar sesión</a></li>
+                        <form action="LogoutServlet" method="post">
+                    <input type="submit" value="Logout" >
                     </ul>
                 </div>
             </nav>
