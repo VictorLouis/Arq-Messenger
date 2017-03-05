@@ -7,7 +7,27 @@ and open the template in the editor.
     Created on : Mar 5, 2017, 9:11:12 AM
     Author     : alex
 */
-body{
+html, body, .h100{
     background-color: #f6f6f6;
+    height: 100%;
+}
+.areaMain{
+    height: 100%;
+    padding-top: 70px;
+}
+.areaMain .areaContacts{
+    width: 32%;
+    float: left;
+    padding: 0 29px;
+}
+.areaMain .areaChat{
+    width: 65%;
+    display: inline-block;
+    position: relative;
+    height: 95%;
+}
+.areaMain .areaChat .areaMessage{
+    position: absolute;
+    bottom: 0;
 }
 
