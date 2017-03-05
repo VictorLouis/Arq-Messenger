@@ -33,9 +33,6 @@ public class HandleUser {
         User userE = userDAO. persist (user) ;
         Authentication authenticationE = authenticationDAO. persist (authentication) ; 
         
-        System.out.println("asda" + authenticationE.toString() ); 
-        System.out.println("asda3" + userE.toString() ); 
-        
         if ( userE != null && authenticationE !=null ) 
             return "la cuenta ha sido creada su Id de Usuario es " + user.getName();
         else
