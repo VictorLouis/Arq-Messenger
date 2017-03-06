@@ -4,7 +4,7 @@
     Author     : alex
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"  import="DataAccess.DAO.UserDAO, DataAccess.Entity.User, java.util.List, DataAccess.Entity.UserConversation, DataAccess.DAO.UserConversationDAO" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,12 +17,21 @@
     </head>
     <body>
         <%
+        
+            
 String userName = null;
+Integer currentID = null; 
+List<UserConversation> convs = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
 	if(cookie.getName().equals("user")) userName = cookie.getValue();
 }
+UserDAO temp = new UserDAO();
+UserConversationDAO temp1 = new UserConversationDAO();
+User current =  temp.searchUserByEmail(userName);
+currentID = current.getId();
+//convs = temp1.searchConversationByUserID(currentID);
 }
 if(userName == null) response.sendRedirect("index.jsp");
 %>
@@ -42,7 +51,12 @@ if(userName == null) response.sendRedirect("index.jsp");
                     <div class="panel panel-default">
                         <div class="panel-heading">Usuario1, Usuario2</div>
                         <div class="panel-body">
-                            Panel content
+                           <%  /*
+   
+   for (int i = 0; i < convs.size(); i++) {
+      out.print("<P>" + convs.get(i).getNombreConversacion() + "</p>");
+   } */
+%>
                         </div>
                     </div>
                     <div class="areaMessage">
@@ -55,7 +69,7 @@ if(userName == null) response.sendRedirect("index.jsp");
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Hola <%=userName %></a>
+                    <a class="navbar-brand" href="#">Hola <%=userName %> con id <%=currentID%> </a>
                     <ul class="nav navbar-nav navbar-right">
                         <form action="LogoutServlet" method="post">
                     <input type="submit" value="Logout" >

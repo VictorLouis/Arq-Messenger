@@ -39,11 +39,13 @@ public class UserConversationDAO {
     
     public List<UserConversation> searchConversationByUserID(int id) {
            EntityManager em = emf1.createEntityManager();
-           UserConversation userConversation = null;
-           String peticion = "UserConversation.findByIdUser";
+           List<UserConversation> userConversation = null;
+           String peticion = "SELECT u FROM UserConversation u WHERE u.IdUser = id";
+           System.out.println("ayuda");
            Query q = em.createQuery(peticion);
+           System.out.println("ayuda2");
            try {
-               userConversation = (UserConversation) q.getResultList();
+               userConversation = (List<UserConversation>) q.getResultList();
            } catch (Exception e){
            } finally {
                em.close();

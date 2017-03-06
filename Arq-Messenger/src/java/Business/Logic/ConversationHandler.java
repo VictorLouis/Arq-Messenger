@@ -23,13 +23,12 @@ public class ConversationHandler {
         Random r = new Random();
         conversation. setId( r.nextInt(100));
         UserConversationDAO userConversationDAO = new UserConversationDAO();
-
-        UserConversation userConversationE = userConversationDAO. persist (userConversation);
         
         ConversationDAO conversationDAO = new ConversationDAO ( ) ; 
         
         Conversation conversationE = conversationDAO. persist (conversation) ;
-        
+
+        UserConversation userConversationE = userConversationDAO. persist (userConversation);
       
         
         if ( conversationE != null ) 

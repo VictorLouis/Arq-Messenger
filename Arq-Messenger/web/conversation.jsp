@@ -4,7 +4,7 @@
     Author     : felipe
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="DataAccess.DAO.MessageDAO, DataAccess.Entity.Message, java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,12 +17,16 @@
     </head>
     <body>
         <%
+Integer currentID = null; 
 String userName = null;
+List<Message> msgs = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
 	if(cookie.getName().equals("user")) userName = cookie.getValue();
 }
+MessageDAO temp = new MessageDAO();
+msgs = temp.searchMessagesByConvID(1);
 }
 if(userName == null) response.sendRedirect("index.jsp");
 %>

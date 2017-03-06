@@ -44,5 +44,18 @@ public class UserDAO {
                em.close();
                return account;
            }
-}
+    }
+    public User searchUserByEmail(String email) {
+           EntityManager em = emf1.createEntityManager();
+           User account = null;
+           String peticion = "select u from User u where u.email = '" + email +"'";
+           Query q = em.createQuery(peticion);
+           try {
+               account = (User) q.getSingleResult();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return account;
+           }
+    }
 }
