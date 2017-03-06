@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package DataAccess.DAO;
-import DataAccess.Entity.Message;
 import DataAccess.Entity.UserConversation;
 import java.util.List;
 
