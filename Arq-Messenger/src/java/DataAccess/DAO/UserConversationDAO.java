@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package DataAccess.DAO;
+import DataAccess.Entity.Message;
 import DataAccess.Entity.UserConversation;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 
 /**
@@ -34,4 +37,19 @@ public class UserConversationDAO {
     
     }
     
+    
+    public List<UserConversation> searchConversationByUserID(int id) {
+           EntityManager em = emf1.createEntityManager();
+           UserConversation userConversation = null;
+           String peticion = "UserConversation.findByIdUser";
+           Query q = em.createQuery(peticion);
+           try {
+               userConversation = (UserConversation) q.getResultList();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return (List<UserConversation>) userConversation;
+           }
+    
+}
 }

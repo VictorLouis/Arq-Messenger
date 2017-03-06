@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import static javax.persistence.TemporalType.DATE;
 
 /**
  *
@@ -31,10 +32,10 @@ public class MessageDAO {
         }
         return message;
     }
-    public Message searchMessage(int id, int User_Id) {
+    public Message searchMessage(int id) {
            EntityManager em = emf1.createEntityManager();
            Message message = null;
-           String peticion = "select m from Message m where m.id = " + id + " AND m.USer_id = '"+User_Id+"'";
+           String peticion = "select m from Message m where m.id = " + id +"'";
            Query q = em.createQuery(peticion);
            try {
                message = (Message) q.getSingleResult();

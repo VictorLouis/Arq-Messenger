@@ -10,6 +10,7 @@
  */
 package DataAccess.DAO;
 import DataAccess.Entity.Conversation;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -39,7 +40,7 @@ public class ConversationDAO {
     public Conversation searchConversation(int id, int User_Id) {
            EntityManager em = emf1.createEntityManager();
            Conversation conversation = null;
-           String peticion = "select m from Conversation m where m.id = " + id + " AND m.User_id = '"+User_Id+"'";
+           String peticion = "select c from Conversation c where c.id = " + id + " AND c.User_id = '"+User_Id+"'";
            Query q = em.createQuery(peticion);
            try {
                conversation = (Conversation) q.getSingleResult();
@@ -48,7 +49,21 @@ public class ConversationDAO {
                em.close();
                return conversation;
            }
-           
+    }
+    
+    public List<Conversation> searchConversationByConverID(int ConversationId) {
+           EntityManager em = emf1.createEntityManager();
+           Conversation conversation = null;
+           String peticion = "Conversation.findById";
+           Query q = em.createQuery(peticion);
+           try {
+               conversation = (Conversation) q.getResultList();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return (List<Conversation>) conversation;
+           }
+    
     }
     
     
