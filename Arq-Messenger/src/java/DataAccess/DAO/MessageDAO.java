@@ -35,7 +35,7 @@ public class MessageDAO {
     public Message searchMessage(int id) {
            EntityManager em = emf1.createEntityManager();
            Message message = null;
-           String peticion = "select m from Message m where m.id = " + id +"'";
+           String peticion = "Message.findById";
            Query q = em.createQuery(peticion);
            try {
                message = (Message) q.getSingleResult();
