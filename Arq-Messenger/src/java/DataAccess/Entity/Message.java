@@ -9,8 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -32,15 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m")
-    , @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.messagePK.id = :id")
-    , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")
-    , @NamedQuery(name = "Message.findByIdConversation", query = "SELECT m FROM Message m WHERE m.messagePK.idConversation = :idConversation")
-    , @NamedQuery(name = "Message.findByUserId", query = "SELECT m FROM Message m WHERE m.messagePK.userId = :userId")})
+    , @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.id = :id")
+    , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")})
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected MessagePK messagePK;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "Date")
@@ -52,36 +53,32 @@ public class Message implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "Text")
     private String text;
-    @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
+    @JoinColumn(name = "User_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
-    private User user;
-    @JoinColumn(name = "IdConversation", referencedColumnName = "Id", insertable = false, updatable = false)
+    private User userId;
+    @JoinColumn(name = "IdConversation", referencedColumnName = "Id")
     @ManyToOne(optional = false)
-    private Conversation conversation;
+    private Conversation idConversation;
 
     public Message() {
     }
 
-    public Message(MessagePK messagePK) {
-        this.messagePK = messagePK;
+    public Message(Integer id) {
+        this.id = id;
     }
 
-    public Message(MessagePK messagePK, Date date, String text) {
-        this.messagePK = messagePK;
+    public Message(Integer id, Date date, String text) {
+        this.id = id;
         this.date = date;
         this.text = text;
     }
 
-    public Message(int id, int idConversation, int userId) {
-        this.messagePK = new MessagePK(id, idConversation, userId);
+    public Integer getId() {
+        return id;
     }
 
-    public MessagePK getMessagePK() {
-        return messagePK;
-    }
-
-    public void setMessagePK(MessagePK messagePK) {
-        this.messagePK = messagePK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getDate() {
@@ -100,26 +97,26 @@ public class Message implements Serializable {
         this.text = text;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
-    public Conversation getConversation() {
-        return conversation;
+    public Conversation getIdConversation() {
+        return idConversation;
     }
 
-    public void setConversation(Conversation conversation) {
-        this.conversation = conversation;
+    public void setIdConversation(Conversation idConversation) {
+        this.idConversation = idConversation;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (messagePK != null ? messagePK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -130,7 +127,7 @@ public class Message implements Serializable {
             return false;
         }
         Message other = (Message) object;
-        if ((this.messagePK == null && other.messagePK != null) || (this.messagePK != null && !this.messagePK.equals(other.messagePK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -138,7 +135,7 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entity.Message[ messagePK=" + messagePK + " ]";
+        return "DataAccess.Entity.Message[ id=" + id + " ]";
     }
     
 }

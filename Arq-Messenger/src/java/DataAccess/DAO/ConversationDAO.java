@@ -48,6 +48,12 @@ public class ConversationDAO {
                em.close();
                return conversation;
            }
+           
+    }
+    
+    
+           
+    
 }
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -61,7 +67,7 @@ public class ConversationDAO {
  * @author carlos
  */
 
-    
-}
+ 
+
 
 

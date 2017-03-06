@@ -1,9 +1,10 @@
 package Business.Logic ; 
 import DataAccess.DAO.ConversationDAO; 
 import DataAccess.Entity.Conversation;
+import DataAccess.Entity.UserConversation;
 import java.sql.Timestamp;
-
-
+import java.util.Random;
+import DataAccess.DAO.UserConversationDAO;
 
 
 /**
@@ -12,14 +13,21 @@ import java.sql.Timestamp;
  */ 
 public class ConversationHandler {
      
-    public String CreateConversation ( ) { 
+    public String CreateConversation ( int id2, int id3, String Nombre ) { 
         Conversation conversation = new Conversation ( ) ; 
-
+        UserConversation userconversation = new UserConversation();
+        userconversation.setNombreConversacion(Nombre);
         java.util.Date date= new java.util.Date();
         conversation. setDate (new Timestamp(date.getTime()));
-        ConversationDAO conversationDAO = new ConversationDAO ( ) ;      
+        Random r = new Random();
+        conversation. setId( r.nextInt(100));
+        UserConversationDAO userConversationDAO = new UserConversationDAO();
+        UserConversationDAO userConversationE = userConversationDAO. persist (userConversation);
+        
+        ConversationDAO conversationDAO = new ConversationDAO ( ) ; 
+        
         Conversation conversationE = conversationDAO. persist (conversation) ;
-      
+        
       
         
         if ( conversationE != null ) 

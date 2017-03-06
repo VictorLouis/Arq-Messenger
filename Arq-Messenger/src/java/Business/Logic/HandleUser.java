@@ -14,7 +14,7 @@ public class HandleUser {
         User user = new User ( ) ; 
         Authentication authentication = new Authentication();
         user. setName ( name ) ; 
-        if (authentication.isValidEmailAdress(email)){
+        if (authentication.isValidEmailAddress(email)){
         user. setEmail ( email ) ; 
         }
         else{ 

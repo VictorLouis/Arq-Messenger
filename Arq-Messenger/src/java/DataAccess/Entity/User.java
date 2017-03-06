@@ -14,9 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -58,17 +55,14 @@ public class User implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "Email")
     private String email;
-    @JoinTable(name = "UserConversation", joinColumns = {
-        @JoinColumn(name = "IdUser", referencedColumnName = "Id")}, inverseJoinColumns = {
-        @JoinColumn(name = "IdConversation", referencedColumnName = "Id")})
-    @ManyToMany
-    private Collection<Conversation> conversationCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Message> messageCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Authentication authentication;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Event> eventCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<UserConversation> userConversationCollection;
 
     public User() {
     }
@@ -108,15 +102,6 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Conversation> getConversationCollection() {
-        return conversationCollection;
-    }
-
-    public void setConversationCollection(Collection<Conversation> conversationCollection) {
-        this.conversationCollection = conversationCollection;
-    }
-
-    @XmlTransient
     public Collection<Message> getMessageCollection() {
         return messageCollection;
     }
@@ -140,6 +125,15 @@ public class User implements Serializable {
 
     public void setEventCollection(Collection<Event> eventCollection) {
         this.eventCollection = eventCollection;
+    }
+
+    @XmlTransient
+    public Collection<UserConversation> getUserConversationCollection() {
+        return userConversationCollection;
+    }
+
+    public void setUserConversationCollection(Collection<UserConversation> userConversationCollection) {
+        this.userConversationCollection = userConversationCollection;
     }
 
     @Override

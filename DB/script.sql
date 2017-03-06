@@ -32,7 +32,7 @@ ENGINE = InnoDB;
 -- Table `messengerDB`.`conversation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `messengerDB`.`conversation` (
-  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Id` INT NOT NULL,
   `Date` DATE NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB;
@@ -44,6 +44,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `messengerDB`.`UserConversation` (
   `IdUser` INT NOT NULL,
   `IdConversation` INT NOT NULL,
+  `Nombre Conversacion` VARCHAR(45) NULL,
   PRIMARY KEY (`IdUser`, `IdConversation`),
   INDEX `fk_UserConversation_conversation1_idx` (`IdConversation` ASC),
   CONSTRAINT `fk_UserConversation_User`
@@ -80,10 +81,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `messengerDB`.`Event` (
   `Id` INT NOT NULL AUTO_INCREMENT,
+  `User_Id` INT NOT NULL,
   `Nombre` VARCHAR(45) NOT NULL,
   `Descripcion` VARCHAR(45) NOT NULL,
-  `User_Id` INT NOT NULL,
-  PRIMARY KEY (`Id`, `User_Id`),
+  PRIMARY KEY (`Id`),
   INDEX `fk_Event_User1_idx` (`User_Id` ASC),
   CONSTRAINT `fk_Event_User1`
     FOREIGN KEY (`User_Id`)
@@ -97,12 +98,12 @@ ENGINE = InnoDB;
 -- Table `messengerDB`.`Message`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `messengerDB`.`Message` (
-  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Id` INT NOT NULL,
   `Date` DATE NOT NULL,
   `Text` LONGTEXT NOT NULL,
   `IdConversation` INT NOT NULL,
   `User_Id` INT NOT NULL,
-  PRIMARY KEY (`Id`, `IdConversation`, `User_Id`),
+  PRIMARY KEY (`Id`),
   INDEX `fk_Message_conversation1_idx` (`IdConversation` ASC),
   INDEX `fk_Message_User1_idx` (`User_Id` ASC),
   CONSTRAINT `fk_Message_conversation1`

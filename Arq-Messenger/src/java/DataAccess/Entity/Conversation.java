@@ -12,10 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -41,8 +38,8 @@ public class Conversation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Id")
     private Integer id;
     @Basic(optional = false)
@@ -50,10 +47,10 @@ public class Conversation implements Serializable {
     @Column(name = "Date")
     @Temporal(TemporalType.DATE)
     private Date date;
-    @ManyToMany(mappedBy = "conversationCollection")
-    private Collection<User> userCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conversation")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConversation")
     private Collection<Message> messageCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conversation")
+    private Collection<UserConversation> userConversationCollection;
 
     public Conversation() {
     }
@@ -84,21 +81,21 @@ public class Conversation implements Serializable {
     }
 
     @XmlTransient
-    public Collection<User> getUserCollection() {
-        return userCollection;
-    }
-
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
-    }
-
-    @XmlTransient
     public Collection<Message> getMessageCollection() {
         return messageCollection;
     }
 
     public void setMessageCollection(Collection<Message> messageCollection) {
         this.messageCollection = messageCollection;
+    }
+
+    @XmlTransient
+    public Collection<UserConversation> getUserConversationCollection() {
+        return userConversationCollection;
+    }
+
+    public void setUserConversationCollection(Collection<UserConversation> userConversationCollection) {
+        this.userConversationCollection = userConversationCollection;
     }
 
     @Override

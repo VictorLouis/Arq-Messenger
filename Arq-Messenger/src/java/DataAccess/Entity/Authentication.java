@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package DataAccess.Entity;
-import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.*;
+
 import java.io.Serializable;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,22 +62,6 @@ public class Authentication implements Serializable {
         this.userId = userId;
         this.password = password;
     }
-    
-    
-    public boolean isValidEmailAdress(String email){
-        boolean result = true;
-        try{
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        }
-        catch (AddressException ex){
-            result = false;
-        }
-        return result;
-    }
-    
-    
-    
 
     public String getPassword() {
         return password;
@@ -86,6 +70,16 @@ public class Authentication implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    public static boolean isValidEmailAddress(String email) {
+   boolean result = true;
+   try {
+      InternetAddress emailAddr = new InternetAddress(email);
+      emailAddr.validate();
+   } catch (AddressException ex) {
+      result = false;
+   }
+   return result;
+}
 
     public Integer getUserId() {
         return userId;

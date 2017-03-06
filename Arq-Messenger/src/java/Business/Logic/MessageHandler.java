@@ -23,7 +23,7 @@ public class MessageHandler {
       
         
         if ( messageE != null ) 
-            return "EL mensaje ha sido creado con id = " + message.getMessagePK();
+            return "EL mensaje ha sido creado con id = " + message.getId();
         else
             return "EL mensjae no ha sido creado revisar" ;  
     } 

@@ -8,8 +8,10 @@ package DataAccess.Entity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -28,15 +30,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event e")
-    , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.eventPK.id = :id")
+    , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.id = :id")
     , @NamedQuery(name = "Event.findByNombre", query = "SELECT e FROM Event e WHERE e.nombre = :nombre")
-    , @NamedQuery(name = "Event.findByDescripcion", query = "SELECT e FROM Event e WHERE e.descripcion = :descripcion")
-    , @NamedQuery(name = "Event.findByUserId", query = "SELECT e FROM Event e WHERE e.eventPK.userId = :userId")})
+    , @NamedQuery(name = "Event.findByDescripcion", query = "SELECT e FROM Event e WHERE e.descripcion = :descripcion")})
 public class Event implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected EventPK eventPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -47,33 +51,29 @@ public class Event implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "Descripcion")
     private String descripcion;
-    @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
+    @JoinColumn(name = "User_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
-    private User user;
+    private User userId;
 
     public Event() {
     }
 
-    public Event(EventPK eventPK) {
-        this.eventPK = eventPK;
+    public Event(Integer id) {
+        this.id = id;
     }
 
-    public Event(EventPK eventPK, String nombre, String descripcion) {
-        this.eventPK = eventPK;
+    public Event(Integer id, String nombre, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Event(int id, int userId) {
-        this.eventPK = new EventPK(id, userId);
+    public Integer getId() {
+        return id;
     }
 
-    public EventPK getEventPK() {
-        return eventPK;
-    }
-
-    public void setEventPK(EventPK eventPK) {
-        this.eventPK = eventPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -92,18 +92,18 @@ public class Event implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (eventPK != null ? eventPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -114,7 +114,7 @@ public class Event implements Serializable {
             return false;
         }
         Event other = (Event) object;
-        if ((this.eventPK == null && other.eventPK != null) || (this.eventPK != null && !this.eventPK.equals(other.eventPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -122,7 +122,7 @@ public class Event implements Serializable {
 
     @Override
     public String toString() {
-        return "DataAccess.Entity.Event[ eventPK=" + eventPK + " ]";
+        return "DataAccess.Entity.Event[ id=" + id + " ]";
     }
     
 }
