@@ -6,23 +6,18 @@ import java.sql.Timestamp;
 import java.util.Random;
 import DataAccess.DAO.UserConversationDAO;
 
-
-/**
- *
- * @author arqsoft2017i
- */ 
 public class ConversationHandler {
      
     public String CreateConversation ( int id2, int id3, String Nombre ) { 
         Conversation conversation = new Conversation ( ) ; 
-        UserConversation userconversation = new UserConversation();
-        userconversation.setNombreConversacion(Nombre);
+        UserConversation userConversation = new UserConversation();
+        userConversation.setNombreConversacion(Nombre);
         java.util.Date date= new java.util.Date();
         conversation. setDate (new Timestamp(date.getTime()));
         Random r = new Random();
         conversation. setId( r.nextInt(100));
         UserConversationDAO userConversationDAO = new UserConversationDAO();
-        UserConversationDAO userConversationE = userConversationDAO. persist (userConversation);
+        UserConversation userConversationE = userConversationDAO. persist (userConversation);
         
         ConversationDAO conversationDAO = new ConversationDAO ( ) ; 
         
