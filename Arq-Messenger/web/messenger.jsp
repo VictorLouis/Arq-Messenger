@@ -27,13 +27,15 @@ if(cookies !=null){
 for(Cookie cookie : cookies){
 	if(cookie.getName().equals("user")) userName = cookie.getValue();
 }
-UserDAO temp = new UserDAO();
-UserConversationDAO temp1 = new UserConversationDAO();
-User current =  temp.searchUserByEmail(userName);
-currentID = current.getId();
+    UserDAO temp = new UserDAO();
+    UserConversationDAO temp1 = new UserConversationDAO();
+    User current =  temp.searchUserByEmail(userName);
+    currentID = current.getId();
 //convs = temp1.searchConversationByUserID(currentID);
 }
-if(userName == null) response.sendRedirect("index.jsp");
+else{
+    response.sendRedirect("index.jsp");
+}
 %>
         <div class="h100">
             <div class="areaMain">
