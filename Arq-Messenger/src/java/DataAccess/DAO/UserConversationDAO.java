@@ -41,7 +41,6 @@ public class UserConversationDAO {
            EntityManager em = emf1.createEntityManager();
            List<UserConversation> userConversation = null;
            Query q = em.createNamedQuery("UserConversation.findAll");
-           //q.setParameter("idUser", id);
            try {
                userConversation = (List<UserConversation>) q.getResultList();
            } catch (Exception e){

@@ -32,15 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m")
-    , @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.id = :id")
+, @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.id = :id")
     , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")})
 public class Message implements Serializable {
-
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "Hora")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date hora;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,6 +53,11 @@ public class Message implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "Text")
     private String text;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Hora")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date hora;
     @JoinColumn(name = "User_Id", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private User userId;

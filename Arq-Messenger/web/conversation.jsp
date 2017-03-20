@@ -26,7 +26,7 @@ for(Cookie cookie : cookies){
 	if(cookie.getName().equals("user")) userName = cookie.getValue();
 }
 MessageDAO temp = new MessageDAO();
-msgs = temp.searchMessagesByConvID(1);
+msgs = temp.searchMessagesByConvID(2);
 }
 if(userName == null) response.sendRedirect("index.jsp");
 %>

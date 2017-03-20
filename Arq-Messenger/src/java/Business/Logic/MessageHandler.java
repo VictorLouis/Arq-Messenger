@@ -1,5 +1,7 @@
 package Business.Logic ; 
 import DataAccess.DAO.MessageDAO; 
+import DataAccess.DAO.UserDAO;
+import DataAccess.DAO.ConversationDAO; 
 import DataAccess.Entity.Message;
 import java.sql.Timestamp;
 
@@ -12,7 +14,7 @@ import java.sql.Timestamp;
  */ 
 public class MessageHandler { 
      
-    public String createMessage ( String text) { 
+    public String createMessage (String text, int IdConversation, int IdUser) { 
         Message message = new Message ( ) ; 
         message. setText ( text ) ; 
         java.util.Date date= new java.util.Date();

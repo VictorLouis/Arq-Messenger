@@ -33,11 +33,12 @@ public class MessageDAO {
         }
         return message;
     }
+    
     public Message searchMessage(int id) {
            EntityManager em = emf1.createEntityManager();
            Message message = null;
-           String peticion = "Message.findById";
-           Query q = em.createQuery(peticion);
+           Query q = em.createNamedQuery("Message.findById");
+           q.setParameter("id", id);
            try {
                message = (Message) q.getSingleResult();
            } catch (Exception e){
@@ -61,17 +62,6 @@ public class MessageDAO {
                return messages;
            }
 }
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/**
- *
- * @author carlos
- */
 
     
 }
