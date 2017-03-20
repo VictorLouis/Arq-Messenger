@@ -16,12 +16,11 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     </head>
     <body>
-        <%
-        
-            
+        <%            
 String userName = null;
 Integer currentID = null; 
 List<UserConversation> convs = null;
+List<User> users = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
@@ -30,6 +29,7 @@ for(Cookie cookie : cookies){
     UserDAO temp = new UserDAO();
     UserConversationDAO temp1 = new UserConversationDAO();
     User current =  temp.searchUserByEmail(userName);
+    users = temp.searchAllUsers();
     currentID = current.getId();
     convs = temp1.searchConversationByUserID(currentID);
 }
@@ -41,12 +41,11 @@ else{
             <div class="areaMain">
                 <div class="areaContacts">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            Victor El Pro
-                        </a>
-                        <a href="#" class="list-group-item">Alex</a>
-                        <a href="#" class="list-group-item">Carlos</a>
-                        <a href="#" class="list-group-item">Felipe</a>
+                        <%  
+                            for (int i = 0; i < users.size(); i++) {
+                               out.print("<a href="+ "\" # \"" +"class="+"\"list-group-item\""+">" + users.get(i).getName()+ "</a>"); 
+                            }  
+                         %>  
                     </div>
                 </div>
                 <div class="areaChat">

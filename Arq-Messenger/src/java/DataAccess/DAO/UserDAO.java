@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
+import java.util.List;
 /**
  *
  * @author arqsoft2017i
@@ -56,6 +56,31 @@ public class UserDAO {
            } finally {
                em.close();
                return account;
+           }
+    }
+    public User searchUserById(int id) {
+           EntityManager em = emf1.createEntityManager();
+           User account = null;
+           Query q = em.createNamedQuery("User.findById");
+           q.setParameter("id", id);
+           try {
+               account = (User) q.getSingleResult();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return account;
+           }
+    }  
+   public List<User> searchAllUsers() {
+           EntityManager em = emf1.createEntityManager();
+           List<User> accounts = null;
+           Query q = em.createNamedQuery("User.findAll");
+           try {
+               accounts = (List<User>) q.getResultList();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return accounts;
            }
     }
 }

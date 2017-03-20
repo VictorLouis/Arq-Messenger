@@ -63,6 +63,20 @@ public class ConversationDAO {
                em.close();
                return (List<Conversation>) conversation;
            }
+    }
+           
+    public Conversation searchConversationByID(int Id) {
+           EntityManager em = emf1.createEntityManager();
+           Conversation conversation = null;
+           Query q = em.createNamedQuery("Conversation.findById");
+           q.setParameter("id", Id);
+           try {
+               conversation = (Conversation) q.getSingleResult();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return (Conversation) conversation;
+           }
     
     }
     
