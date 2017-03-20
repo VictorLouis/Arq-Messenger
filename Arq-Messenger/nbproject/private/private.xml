@@ -7,10 +7,10 @@
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/DataAccess/Entity/UserConversation.java</file>
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/DataAccess/DAO/MessageDAO.java</file>
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/DataAccess/Entity/Conversation.java</file>
-            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Business/Logic/CreateAccountServlet.java</file>
-            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Business/Logic/ConversationHandler.java</file>
-            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/DataAccess/DAO/UserDAO.java</file>
+            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Business/Logic/MessageHandler.java</file>
+            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/web/conversation.jsp</file>
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/DataAccess/Entity/Message.java</file>
+            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/web/index.jsp</file>
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/DataAccess/DAO/UserConversationDAO.java</file>
         </group>
     </open-files>

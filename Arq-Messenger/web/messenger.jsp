@@ -31,7 +31,7 @@ for(Cookie cookie : cookies){
     UserConversationDAO temp1 = new UserConversationDAO();
     User current =  temp.searchUserByEmail(userName);
     currentID = current.getId();
-//convs = temp1.searchConversationByUserID(currentID);
+    convs = temp1.searchConversationByUserID(currentID);
 }
 else{
     response.sendRedirect("index.jsp");
@@ -51,22 +51,17 @@ else{
                 </div>
                 <div class="areaChat">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Usuario1, Usuario2</div>
+                        <div class="panel-heading">Conversaciones</div>
                         <div class="panel-body">
-                           <%  /*
+                           <%  
    
    for (int i = 0; i < convs.size(); i++) {
-      out.print("<P>" + convs.get(i).getNombreConversacion() + "</p>");
-   } */
+      out.print("<P>" + convs.get(i).getNombreConversacion() + "</p>"); 
+   }  
 %>
                         </div>
                     </div>
-                    <div class="areaMessage">
-                        <form class="form-inline">
-                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Mensaje">
-                            <button type="submit" class="btn btn-success">Enviar</button>
-                        </form>
-                    </div>
+                    
                 </div>
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">

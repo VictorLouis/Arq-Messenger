@@ -36,6 +36,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Message.findByDate", query = "SELECT m FROM Message m WHERE m.date = :date")})
 public class Message implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Hora")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date hora;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -136,6 +142,14 @@ public class Message implements Serializable {
     @Override
     public String toString() {
         return "DataAccess.Entity.Message[ id=" + id + " ]";
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
     
 }

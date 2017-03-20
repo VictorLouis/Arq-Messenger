@@ -31,11 +31,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "UserConversation.findByNombreConversacion", query = "SELECT u FROM UserConversation u WHERE u.nombreConversacion = :nombreConversacion")})
 public class UserConversation implements Serializable {
 
+    
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected UserConversationPK userConversationPK;
     @Size(max = 45)
-    @Column(name = "Nombre Conversacion")
+    @Column(name = "NombreConversacion")
     private String nombreConversacion;
     @JoinColumn(name = "IdUser", referencedColumnName = "Id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -111,5 +113,6 @@ public class UserConversation implements Serializable {
     public String toString() {
         return "DataAccess.Entity.UserConversation[ userConversationPK=" + userConversationPK + " ]";
     }
+
     
 }

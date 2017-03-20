@@ -51,7 +51,7 @@ public class ConversationDAO {
            }
     }
     
-    public List<Conversation> searchConversationByConverID(int ConversationId) {
+    public List<Conversation> searchConversationsByConverID(int ConversationId) {
            EntityManager em = emf1.createEntityManager();
            Conversation conversation = null;
            String peticion = "Conversation.findById";

@@ -36,7 +36,12 @@ if(userName == null) response.sendRedirect("index.jsp");
                     <div class="panel panel-default">
                         <div class="panel-heading">Usuario1, Usuario2</div>
                         <div class="panel-body">
-                            Panel content
+                            <%  
+   
+   for (int i = 0; i < msgs.size(); i++) {
+      out.print("<P>" + msgs.get(i).getText() + "</p>");
+   } 
+%>
                         </div>
                     </div>
                     <div class="areaMessage">

@@ -37,13 +37,25 @@ public class UserConversationDAO {
     }
     
     
+    public List<UserConversation> searchAllConversations() {
+           EntityManager em = emf1.createEntityManager();
+           List<UserConversation> userConversation = null;
+           Query q = em.createNamedQuery("UserConversation.findAll");
+           //q.setParameter("idUser", id);
+           try {
+               userConversation = (List<UserConversation>) q.getResultList();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return (List<UserConversation>) userConversation;
+           }
+    }
+           
     public List<UserConversation> searchConversationByUserID(int id) {
            EntityManager em = emf1.createEntityManager();
            List<UserConversation> userConversation = null;
-           String peticion = "SELECT u FROM UserConversation u WHERE u.IdUser = id";
-           System.out.println("ayuda");
-           Query q = em.createQuery(peticion);
-           System.out.println("ayuda2");
+           Query q = em.createNamedQuery("UserConversation.findByIdUser");
+           q.setParameter("idUser", id);
            try {
                userConversation = (List<UserConversation>) q.getResultList();
            } catch (Exception e){
@@ -52,5 +64,5 @@ public class UserConversationDAO {
                return (List<UserConversation>) userConversation;
            }
     
-}
+    }
 }
