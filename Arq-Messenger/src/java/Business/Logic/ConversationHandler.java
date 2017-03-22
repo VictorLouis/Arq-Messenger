@@ -5,19 +5,24 @@ import DataAccess.Entity.UserConversation;
 import java.sql.Timestamp;
 import java.util.Random;
 import DataAccess.DAO.UserConversationDAO;
+import DataAccess.DAO.UserDAO;
+import DataAccess.Entity.User;
 
 public class ConversationHandler {
      
-    public String CreateConversation ( int id2, int id3, String Nombre ) { 
+    public String CreateConversation ( int idUser, int idConversation, String Nombre ) { 
         Conversation conversation = new Conversation ( ) ; 
 
-        UserConversation userConversation = new UserConversation(id2, id3);
+        UserConversation userConversation = new UserConversation(idUser, idConversation);
+        userConversation.setNombreConversacion(Nombre);
         
-        userConversation.setNombreConversacion(Nombre);
+        UserDAO userD = new UserDAO();
+        User userM = userD.searchUserById(idUser);
+        
+        ConversationDAO convD = new ConversationDAO();
+        Conversation convM = convD.searchConversationByID(idConversation);
 
-      
-        userConversation.setNombreConversacion(Nombre);
-
+        
         java.util.Date date= new java.util.Date();
         conversation. setDate (new Timestamp(date.getTime()));
         Random r = new Random();
@@ -27,7 +32,6 @@ public class ConversationHandler {
         ConversationDAO conversationDAO = new ConversationDAO ( ) ; 
         
         Conversation conversationE = conversationDAO. persist (conversation) ;
-
         UserConversation userConversationE = userConversationDAO. persist (userConversation);
       
         
