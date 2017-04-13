@@ -48,8 +48,8 @@ public class UserDAO {
     public User searchUserByEmail(String email) {
            EntityManager em = emf1.createEntityManager();
            User account = null;
-           String peticion = "select u from User u where u.email = '" + email +"'";
-           Query q = em.createQuery(peticion);
+           Query q = em.createNamedQuery("User.findByEmail");
+           q.setParameter("email", email);
            try {
                account = (User) q.getSingleResult();
            } catch (Exception e){
@@ -58,6 +58,7 @@ public class UserDAO {
                return account;
            }
     }
+    
     public User searchUserById(int id) {
            EntityManager em = emf1.createEntityManager();
            User account = null;
@@ -71,6 +72,20 @@ public class UserDAO {
                return account;
            }
     }  
+    
+    public User searchUserByName(String name) {
+           EntityManager em = emf1.createEntityManager();
+           User account = null;
+           Query q = em.createNamedQuery("User.findByName");
+           q.setParameter("name", name);
+           try {
+               account = (User) q.getSingleResult();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return account;
+           }
+    }
    public List<User> searchAllUsers() {
            EntityManager em = emf1.createEntityManager();
            List<User> accounts = null;

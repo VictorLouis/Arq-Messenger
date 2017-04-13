@@ -4,7 +4,7 @@
     Author     : alex
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"  import="DataAccess.DAO.UserDAO, DataAccess.Entity.User, java.util.List, DataAccess.Entity.UserConversation, DataAccess.DAO.UserConversationDAO" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"  import="DataAccess.Entity.User, DataAccess.Entity.UserConversation, Business.Logic.ConversationHandler, Business.Logic.HandleUser, java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,21 +17,21 @@
     </head>
     <body>
         <%            
-String userName = null;
+String userEmail = null;
 Integer currentID = null; 
 List<UserConversation> convs = null;
 List<User> users = null;
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
 for(Cookie cookie : cookies){
-	if(cookie.getName().equals("user")) userName = cookie.getValue();
+	if(cookie.getName().equals("user")) userEmail = cookie.getValue();
 }
-    UserDAO temp = new UserDAO();
-    UserConversationDAO temp1 = new UserConversationDAO();
-    User current =  temp.searchUserByEmail(userName);
-    users = temp.searchAllUsers();
+    HandleUser userH = new HandleUser();
+    ConversationHandler convH = new ConversationHandler();
+    User current =  userH.searchByEmail(userEmail);
+    users = userH.AllUsers();
     currentID = current.getId();
-    convs = temp1.searchConversationByUserID(currentID);
+    convs = convH.searchAllConvsByUserID(currentID);
 }
 else{
     response.sendRedirect("index.jsp");
@@ -65,7 +65,7 @@ else{
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Hola <%=userName %> con id <%=currentID%> </a>
+                    <a class="navbar-brand" href="#">Hola <%=userEmail %> con id <%=currentID%> </a>
                     <ul class="nav navbar-nav navbar-right">
                         <form action="LogoutServlet" method="post">
                     <input type="submit" value="Logout" >

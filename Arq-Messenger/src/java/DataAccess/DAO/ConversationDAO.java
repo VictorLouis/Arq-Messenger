@@ -10,7 +10,6 @@
  */
 package DataAccess.DAO;
 import DataAccess.Entity.Conversation;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -50,6 +49,7 @@ public class ConversationDAO {
                return conversation;
            }
     }
+    /*
     
     public List<Conversation> searchConversationsByConverID(int ConversationId) {
            EntityManager em = emf1.createEntityManager();
@@ -64,6 +64,7 @@ public class ConversationDAO {
                return (List<Conversation>) conversation;
            }
     }
+    */
            
     public Conversation searchConversationByID(int Id) {
            EntityManager em = emf1.createEntityManager();

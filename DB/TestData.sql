@@ -13,7 +13,7 @@ INSERT INTO messengerDB.Message (Id, `Date`, Text, IdConversation, User_Id, Hora
 INSERT INTO messengerDB.Message (Id, `Date`, Text, IdConversation, User_Id, Hora) 
 	VALUES (2, DEFAULT, 'No se, pues si creo, por?', 1, 2, DEFAULT);
 INSERT INTO messengerDB.Message (Id, `Date`, Text, IdConversation, User_Id, Hora) 
-	VALUES (3, DEFAULT, 'Porque miyoz tien 13 lok', 1, 1, DEFAULT);
+	VALUES (3, DEFAULT, 'Porque miyoz tiene 13 lok', 1, 1, DEFAULT);
 
 
 INSERT INTO messengerDB.conversation (Id, `Date`) 

@@ -7,17 +7,20 @@ import java.util.Random;
 import DataAccess.DAO.UserConversationDAO;
 import DataAccess.DAO.UserDAO;
 import DataAccess.Entity.User;
+import java.util.List;
 
 public class ConversationHandler {
      
-    public String CreateConversation ( int idUser, int idConversation, String Nombre ) { 
+    public String CreateConversation (int idUserCurrent, int idUserTarget, int idConversation, String Nombre ) { 
         Conversation conversation = new Conversation ( ) ; 
 
-        UserConversation userConversation = new UserConversation(idUser, idConversation);
-        userConversation.setNombreConversacion(Nombre);
+        UserConversation userConversation1 = new UserConversation(idUserCurrent, idConversation);
+        UserConversation userConversation2 = new UserConversation(idUserTarget, idConversation);
+        userConversation1.setNombreConversacion(Nombre);
         
         UserDAO userD = new UserDAO();
-        User userM = userD.searchUserById(idUser);
+        User userC = userD.searchUserById(idUserCurrent);
+        User userT = userD.searchUserById(idUserTarget);
         
         ConversationDAO convD = new ConversationDAO();
         Conversation convM = convD.searchConversationByID(idConversation);
@@ -32,18 +35,39 @@ public class ConversationHandler {
         ConversationDAO conversationDAO = new ConversationDAO ( ) ; 
         
         Conversation conversationE = conversationDAO. persist (conversation) ;
-        UserConversation userConversationE = userConversationDAO. persist (userConversation);
+        UserConversation userConversation1E = userConversationDAO. persist (userConversation1);
+        UserConversation userConversation2E = userConversationDAO. persist (userConversation2);
       
         
-        if ( conversationE != null ) 
+        if ( conversationE != null && userConversation1E  != null && userConversation2E != null) 
             return "La conversacion ha sido creado con id = " + conversation.getId();
         else
             return "LA conversacion no ha sido creada revisar" ;  
     } 
 
+   public String addPersonConversation(int idCurrentConv, int idNewUser){
    
-    
-    
+       UserConversation userConversation1 = new UserConversation(idNewUser, idCurrentConv);
+       UserConversationDAO userConversationDAO = new UserConversationDAO();
+       
+       UserDAO userD = new UserDAO();
+       User userN = userD.searchUserById(idNewUser);
+       
+       UserConversation result = userConversationDAO.addPerson(userConversation1);
+       
+       if (result != null) 
+           return userN.getName() + "ha sido agregado a la conversacion";
+       else
+           return userN.getName() + "NO ha sido aregado"; 
+   }
+   
+   public List<UserConversation> searchAllConvsByUserID(int userID){
+       
+       UserConversationDAO temp = new UserConversationDAO();
+       
+       return temp.searchConversationsByUserID(userID); 
+   }
+       
     
 }
    

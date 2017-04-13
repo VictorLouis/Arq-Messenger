@@ -4,7 +4,7 @@
     Author     : felipe
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" import="DataAccess.DAO.MessageDAO, DataAccess.Entity.Message, java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="Business.Logic.MessageHandler, DataAccess.Entity.Message, java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,8 +25,8 @@ if(cookies !=null){
 for(Cookie cookie : cookies){
 	if(cookie.getName().equals("user")) userName = cookie.getValue();
 }
-MessageDAO temp = new MessageDAO();
-msgs = temp.searchMessagesByConvID(2);
+MessageHandler msgH = new MessageHandler();
+msgs = msgH.searchMsgsByConvID(2);
 }
 if(userName == null) response.sendRedirect("index.jsp");
 %>

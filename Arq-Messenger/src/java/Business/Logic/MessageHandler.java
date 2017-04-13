@@ -6,9 +6,7 @@ import DataAccess.Entity.Message;
 import DataAccess.Entity.User;
 import DataAccess.Entity.Conversation;
 import java.util.concurrent.ThreadLocalRandom;
-import java.sql.Timestamp;
-
-
+import java.util.List;
 
 
 /**
@@ -43,9 +41,16 @@ public class MessageHandler {
         if ( messageE != null ) 
             return "EL mensaje ha sido creado con id = " + message.getId();
         else
-            return "EL mensjae no ha sido creado revisar" ;  
+            return "EL mensaje NO ha sido creado revisar" ;  
     } 
 
+    public List<Message> searchMsgsByConvID(int convID){
+        
+        MessageDAO msgDAO = new MessageDAO();
+        
+        return msgDAO.searchMessagesByConvID(convID);
+   
+    }
    
     
     

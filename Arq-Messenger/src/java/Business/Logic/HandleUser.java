@@ -3,7 +3,7 @@ import DataAccess.DAO.UserDAO;
 import DataAccess.DAO.AuthenticationDAO;
 import DataAccess.Entity.User ; 
 import DataAccess.Entity.Authentication ; 
-
+import java.util.List;
 /**
  *
  * @author arqsoft2017i
@@ -47,8 +47,32 @@ public class HandleUser {
     } 
 
    
+    public List<User> AllUsers(){
+        
+        UserDAO userDAO = new UserDAO ( ) ; 
+            
+        return userDAO.searchAllUsers();
+    }
     
+    public User searchByEmail(String email){
+        
+        UserDAO userDAO = new UserDAO ( ) ; 
+            
+        return userDAO.searchUserByEmail(email);
+    }
     
+    public User searchById(int id){
+        
+        UserDAO userDAO = new UserDAO ( ) ; 
+            
+        return userDAO.searchUserById(id);
+    }
     
+    public User searchByName(String name){
+        
+        UserDAO userDAO = new UserDAO ( ) ; 
+            
+        return userDAO.searchUserByName(name);
+    }
 }
    

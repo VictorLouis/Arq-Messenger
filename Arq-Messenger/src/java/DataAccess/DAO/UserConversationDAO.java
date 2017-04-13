@@ -20,6 +20,7 @@ import javax.persistence.Query;
 public class UserConversationDAO {
    
     public EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("MessengerUNPU");
+    
     public UserConversation persist(UserConversation userConversation) {
         EntityManager em = emf1.createEntityManager();
         em.getTransaction().begin();
@@ -50,7 +51,7 @@ public class UserConversationDAO {
            }
     }
            
-    public List<UserConversation> searchConversationByUserID(int id) {
+    public List<UserConversation> searchConversationsByUserID(int id) {
            EntityManager em = emf1.createEntityManager();
            List<UserConversation> userConversation = null;
            Query q = em.createNamedQuery("UserConversation.findByIdUser");
@@ -64,4 +65,10 @@ public class UserConversationDAO {
            }
     
     }
-}
+    
+    public UserConversation addPerson(UserConversation userConversation) {
+        
+        return persist(userConversation);
+    }
+ }
+
