@@ -4,7 +4,7 @@
     Author     : felipe
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" import="Business.Logic.MessageHandler, DataAccess.Entity.Message, java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="DataAccess.Entity.User, Business.Logic.MessageHandler, Business.Logic.UserHandler, DataAccess.Entity.Message, java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,44 +17,51 @@
     </head>
     <body>
         <%
-Integer currentID = null; 
-String userName = null;
+
+Integer currentUserID = null; 
+Integer ConvID = 1;
+String userEmail = null;
 List<Message> msgs = null;
+UserHandler userH = new UserHandler();
 Cookie[] cookies = request.getCookies();
 if(cookies !=null){
-for(Cookie cookie : cookies){
-	if(cookie.getName().equals("user")) userName = cookie.getValue();
+    for(Cookie cookie : cookies){
+            if(cookie.getName().equals("user")) userEmail = cookie.getValue();
+    }
+   
+    User currentUser =  userH.searchByEmail(userEmail);
+    currentUserID = currentUser.getId();
+    MessageHandler msgH = new MessageHandler();
+    msgs = msgH.searchMsgsByConvID(ConvID);
 }
-MessageHandler msgH = new MessageHandler();
-msgs = msgH.searchMsgsByConvID(2);
-}
-if(userName == null) response.sendRedirect("index.jsp");
+if(userEmail == null) response.sendRedirect("index.jsp");
 %>
         <div class="h100">
             <div class="areaMain">
                 <div class="areaChat">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Usuario1, Usuario2</div>
+                        <div class="panel-heading"> CONVERSACION NAME </div>
                         <div class="panel-body">
                             <%  
-   
-   for (int i = 0; i < msgs.size(); i++) {
-      out.print("<P>" + msgs.get(i).getText() + "</p>");
-   } 
-%>
+                                for (int i = 0; i < msgs.size(); i++) { 
+                                   out.print("<P>" + msgs.get(i).getUserId().getName() + ": " + msgs.get(i).getText() + "</p>");
+                                } 
+                             %>
                         </div>
                     </div>
                     <div class="areaMessage">
-                        <form class="form-inline">
-                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Mensaje">
+                        <form action ="SendServlet" method="post" class="form-inline">
+                            <input type="text" class="form-control" id="example1" value="<%=currentUserID %>" name="idUser">
+                            <input type="text" class="form-control" id="example2" value="<%=ConvID %>" name="idConv">
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Mensaje" name="msg">
                             <button type="submit" class="btn btn-success">Enviar</button>
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>            
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Hola <%=userName %></a>
+                    <a class="navbar-brand" href="#">Hola <%=userEmail %></a>
                     <ul class="nav navbar-nav navbar-right">
                         <form action="LogoutServlet" method="post">
                     <input type="submit" value="Logout" >

@@ -31,7 +31,11 @@ public class MessageHandler {
         message.setText ( text ) ; 
         message.setIdConversation(convM);
         message.setUserId(userM);
-        message.setId(ThreadLocalRandom.current().nextInt(7,900));
+        //message.setId(ThreadLocalRandom.current().nextInt(7,900));
+        
+        System.out.println(text);
+        System.out.println(convM);
+        System.out.println(userM);
         
         
         MessageDAO messageDAO = new MessageDAO ( ) ;      

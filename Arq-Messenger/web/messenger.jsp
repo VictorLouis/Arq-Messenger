@@ -52,12 +52,11 @@ else{
                     <div class="panel panel-default">
                         <div class="panel-heading">Conversaciones</div>
                         <div class="panel-body">
-                           <%  
-   
-   for (int i = 0; i < convs.size(); i++) {
-      out.print("<P>" + convs.get(i).getNombreConversacion() + "</p>"); 
-   }  
-%>
+                           <%    
+                                for (int i = 0; i < convs.size(); i++) {
+                                   out.print("<P>" + convs.get(i).getNombreConversacion() + "</p>"); 
+                                }  
+                             %>
                         </div>
                     </div>
                     
