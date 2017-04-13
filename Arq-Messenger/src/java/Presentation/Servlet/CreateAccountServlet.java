@@ -5,7 +5,7 @@
  */
 package Presentation.Servlet;
 
-import Business.Logic.HandleUser;
+import Business.Logic.UserHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -43,7 +43,7 @@ public class CreateAccountServlet extends HttpServlet{
                 String pwd = request.getParameter("pwdR");
                 String pwd2 = request.getParameter("pwd2R");
                 
-                HandleUser createUser = new HandleUser();
+                UserHandler createUser = new UserHandler();
                 String message = createUser.createAccount(user, pwd, pwd2, email);
                 
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");

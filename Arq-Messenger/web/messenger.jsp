@@ -4,7 +4,7 @@
     Author     : alex
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"  import="DataAccess.Entity.User, DataAccess.Entity.UserConversation, Business.Logic.ConversationHandler, Business.Logic.HandleUser, java.util.List" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"  import="DataAccess.Entity.User, DataAccess.Entity.UserConversation, Business.Logic.ConversationHandler, Business.Logic.UserHandler, java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +26,7 @@ if(cookies !=null){
 for(Cookie cookie : cookies){
 	if(cookie.getName().equals("user")) userEmail = cookie.getValue();
 }
-    HandleUser userH = new HandleUser();
+    UserHandler userH = new UserHandler();
     ConversationHandler convH = new ConversationHandler();
     User current =  userH.searchByEmail(userEmail);
     users = userH.AllUsers();

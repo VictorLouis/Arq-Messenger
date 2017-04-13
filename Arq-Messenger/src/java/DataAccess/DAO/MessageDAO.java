@@ -61,7 +61,24 @@ public class MessageDAO {
                em.close();
                return messages;
            }
+    }
+           
+    public List<Message> searchMessagesByTextLikeness(String toSearch){
+        EntityManager em = emf1.createEntityManager();
+           List<Message> messages = null;
+           String peticion = "SELECT m FROM Message m WHERE m.text = " + toSearch;
+           Query q = em.createQuery(peticion);
+           
+           try {
+               messages = (List<Message>) q.getResultList();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return messages;
+           }
+    
+    }
 }
 
     
-}
+

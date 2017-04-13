@@ -86,10 +86,25 @@ public class UserDAO {
                return account;
            }
     }
+    
    public List<User> searchAllUsers() {
            EntityManager em = emf1.createEntityManager();
            List<User> accounts = null;
            Query q = em.createNamedQuery("User.findAll");
+           try {
+               accounts = (List<User>) q.getResultList();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return accounts;
+           }
+    }
+   
+   public List<User> searchUsersByNameLikeness(String UserNameLike) {
+           EntityManager em = emf1.createEntityManager();
+           List<User> accounts = null;
+           String peticion = "select u from User u where u.name = '" + UserNameLike + "'";
+           Query q = em.createQuery(peticion);
            try {
                accounts = (List<User>) q.getResultList();
            } catch (Exception e){

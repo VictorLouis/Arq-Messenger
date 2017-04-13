@@ -5,7 +5,7 @@
  */
 package Presentation.Bean;
 
-import Business.Logic.HandleUser;
+import Business.Logic.UserHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -87,7 +87,7 @@ public class CreateAccountBean {
     }
     
     public void createAccount() {
-        HandleUser createUser = new HandleUser();
+        UserHandler createUser = new UserHandler();
         message = createUser.createAccount(name, passwordUser, passwordUser2, email);
     }
 }

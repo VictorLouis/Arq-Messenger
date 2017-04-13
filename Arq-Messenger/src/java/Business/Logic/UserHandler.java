@@ -8,17 +8,24 @@ import java.util.List;
  *
  * @author arqsoft2017i
  */ 
-public class HandleUser { 
+public class UserHandler { 
      
     public String createAccount ( String name, String passwordUser, String passwordUser2, String email ) { 
+        
         User user = new User ( ) ; 
         Authentication authentication = new Authentication();
+        UserDAO userDAO = new UserDAO ( ) ; 
+        
         user. setName ( name ) ; 
+        
         if (authentication.isValidEmailAddress(email)){
         user. setEmail ( email ) ; 
         }
         else{ 
             return "email invalido";
+        }
+        if (userDAO.searchUserByEmail(email) != null){
+            return "ERROR Ya existe un usuario con ese Email";
         }
         if ((passwordUser.length())>=8){
         authentication. setPassword (passwordUser);
@@ -32,9 +39,10 @@ public class HandleUser {
         else{
             return "Error las contraseña deben ser iguales. ";
         }
+        
         System.out.println(name + passwordUser + passwordUser2 + email);
         
-        UserDAO userDAO = new UserDAO ( ) ; 
+        
         AuthenticationDAO authenticationDAO = new AuthenticationDAO ( ) ; 
         
         User userE = userDAO. persist (user) ;
