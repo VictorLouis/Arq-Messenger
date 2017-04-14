@@ -5,8 +5,8 @@ import DataAccess.DAO.ConversationDAO;
 import DataAccess.Entity.Message;
 import DataAccess.Entity.User;
 import DataAccess.Entity.Conversation;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 
 /**
@@ -15,15 +15,21 @@ import java.util.List;
  */ 
 public class MessageHandler { 
      
-    public String createMessage (String text, int IdConversation, int IdUser) {
+   
+        
+    public String createMessage (String text, int IdConversation, int IdUser) { 
+           
         
         Message message = new Message ( ) ;
         
+        
         UserDAO userD = new UserDAO();
-        User userM = userD.searchUserById(IdUser);
+        EntityManager em1 = userD.emf1.createEntityManager();
+        User userM = em1.find(User.class, IdUser);
         
         ConversationDAO convD = new ConversationDAO();
-        Conversation convM = convD.searchConversationByID(IdConversation);
+        EntityManager em2 = convD.emf1.createEntityManager();
+        Conversation convM = em2.find(Conversation.class, IdConversation);
         
         //java.util.Date date= new java.util.Date();
         //message. setDate (new Timestamp(date.getTime()));
@@ -31,14 +37,15 @@ public class MessageHandler {
         message.setText ( text ) ; 
         message.setIdConversation(convM);
         message.setUserId(userM);
-        //message.setId(ThreadLocalRandom.current().nextInt(7,900));
+        
         
         System.out.println(text);
         System.out.println(convM);
         System.out.println(userM);
         
         
-        MessageDAO messageDAO = new MessageDAO ( ) ;      
+        MessageDAO messageDAO = new MessageDAO ( ) ;  
+        
         Message messageE = messageDAO. persist (message) ;
       
         
