@@ -34,6 +34,7 @@ public class MessageHandler {
         //java.util.Date date= new java.util.Date();
         //message. setDate (new Timestamp(date.getTime()));
         
+        message.setId(678);
         message.setText ( text ) ; 
         message.setIdConversation(convM);
         message.setUserId(userM);
