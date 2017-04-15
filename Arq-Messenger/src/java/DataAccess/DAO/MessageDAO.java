@@ -51,7 +51,7 @@ public class MessageDAO {
     public List<Message> searchMessagesByConvID(int id) {
            EntityManager em = emf1.createEntityManager();
            List<Message> messages = null;
-           String peticion = "SELECT m FROM Message m WHERE m.idConversation.id = " + id;
+           String peticion = "SELECT m FROM Message m WHERE m.idConversation.id = " + id + " ORDER BY m.hora";
            Query q = em.createQuery(peticion);
            
            try {

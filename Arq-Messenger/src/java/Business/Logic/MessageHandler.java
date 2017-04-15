@@ -5,7 +5,9 @@ import DataAccess.DAO.ConversationDAO;
 import DataAccess.Entity.Message;
 import DataAccess.Entity.User;
 import DataAccess.Entity.Conversation;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.persistence.EntityManager;
 
 
@@ -19,9 +21,7 @@ public class MessageHandler {
         
     public String createMessage (String text, int IdConversation, int IdUser) { 
            
-        
         Message message = new Message ( ) ;
-        
         
         UserDAO userD = new UserDAO();
         EntityManager em1 = userD.emf1.createEntityManager();
@@ -31,25 +31,27 @@ public class MessageHandler {
         EntityManager em2 = convD.emf1.createEntityManager();
         Conversation convM = em2.find(Conversation.class, IdConversation);
         
-        //java.util.Date date= new java.util.Date();
-        //message. setDate (new Timestamp(date.getTime()));
+        MessageDAO messageDAO = new MessageDAO ( ) ;  
+        java.util.Date date= new java.util.Date();
         
-        message.setId(678);
+        Integer msgId = ThreadLocalRandom.current().nextInt(7,900);
+        while(messageDAO.searchMessage(msgId)!=null){
+            msgId = ThreadLocalRandom.current().nextInt(7,900);
+        }
+        
+        message.setId(msgId);
+        message.setDate (new Timestamp(date.getTime()));
+        message.setHora(new Timestamp(date.getTime()));
         message.setText ( text ) ; 
         message.setIdConversation(convM);
         message.setUserId(userM);
-        
         
         System.out.println(text);
         System.out.println(convM);
         System.out.println(userM);
         
-        
-        MessageDAO messageDAO = new MessageDAO ( ) ;  
-        
         Message messageE = messageDAO. persist (message) ;
-      
-        
+             
         if ( messageE != null ) 
             return "EL mensaje ha sido creado con id = " + message.getId();
         else
