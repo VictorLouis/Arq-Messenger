@@ -66,6 +66,21 @@ public class UserConversationDAO {
     
     }
     
+    public UserConversation searchOneUserConversationByConvID(int ConvId) {
+        EntityManager em = emf1.createEntityManager();
+           UserConversation userConversation = null;
+           Query q = em.createNamedQuery("UserConversation.findByIdConversation");
+           q.setParameter("idUser", ConvId);
+           try {
+               userConversation = (UserConversation) q.getSingleResult();
+           } catch (Exception e){
+           } finally {
+               em.close();
+               return (UserConversation) userConversation;
+           }
+    
+    }
+    
     public UserConversation addPerson(UserConversation userConversation) {
         
         return persist(userConversation);
