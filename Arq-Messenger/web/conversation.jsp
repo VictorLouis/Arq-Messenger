@@ -18,24 +18,25 @@
     <body>
         <%
 
-Integer currentUserID = null; 
-Integer ConvID = 1;
-String userEmail = null;
-List<Message> msgs = null;
-UserHandler userH = new UserHandler();
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-    for(Cookie cookie : cookies){
-            if(cookie.getName().equals("user")) userEmail = cookie.getValue();
-    }
-   
-    User currentUser =  userH.searchByEmail(userEmail);
-    currentUserID = currentUser.getId();
-    MessageHandler msgH = new MessageHandler();
-    msgs = msgH.searchMsgsByConvID(ConvID);
-}
-if(userEmail == null) response.sendRedirect("index.jsp");
-%>
+        Integer currentUserID = null; 
+        Integer ConvID = 1;
+        String userEmail = null;
+        List<Message> msgs = null;
+        UserHandler userH = new UserHandler();
+        session = request.getSession(false);
+        if(session != null){
+            userEmail = (String) session.getAttribute("name");
+            currentUserID = (Integer) session.getAttribute("sessionId");
+
+            User currentUser =  userH.searchByEmail(userEmail);
+            currentUserID = currentUser.getId();
+            MessageHandler msgH = new MessageHandler();
+            msgs = msgH.searchMsgsByConvID(ConvID);
+        }
+        else{
+            response.sendRedirect("index.jsp");
+        }
+        %>
         <div class="h100">
             <div class="areaMain">
                 <div class="areaChat">

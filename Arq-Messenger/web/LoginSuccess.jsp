@@ -16,15 +16,18 @@
 <body>
 <%
 String userName = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-for(Cookie cookie : cookies){
-	if(cookie.getName().equals("user")) userName = cookie.getValue();
+Integer userSessID = null;
+session = request.getSession(false);
+
+if(session != null){
+    userName = (String) session.getAttribute("name");
+    userSessID = (Integer) session.getAttribute("sessionId");
 }
+else{
+    response.sendRedirect("/index.jsp");
 }
-if(userName == null) response.sendRedirect("loginServ.html");
 %>
-<h3>Hi <%=userName %>, Login successful.</h3>
+<h3>Hi <%=userName %>, ID: <%=userSessID %>  Session ID; Login: <%=session.getId()%> successful.</h3>
 <br>
 <form action="LogoutServlet" method="post">
 <input type="submit" value="Logout" >

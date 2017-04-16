@@ -17,26 +17,26 @@
     </head>
     <body>
         <%            
-String userEmail = null;
-Integer currentID = null; 
-List<UserConversation> convs = null;
-List<User> users = null;
-Cookie[] cookies = request.getCookies();
-if(cookies !=null){
-for(Cookie cookie : cookies){
-	if(cookie.getName().equals("user")) userEmail = cookie.getValue();
-}
-    UserHandler userH = new UserHandler();
-    ConversationHandler convH = new ConversationHandler();
-    User current =  userH.searchByEmail(userEmail);
-    users = userH.AllUsers();
-    currentID = current.getId();
-    convs = convH.searchAllConvsByUserID(currentID);
-}
-else{
-    response.sendRedirect("index.jsp");
-}
-%>
+        String userEmail = null;
+        Integer currentID = null; 
+        List<UserConversation> convs = null;
+        List<User> users = null;
+        session = request.getSession(false);
+        if(session != null){
+            userEmail = (String) session.getAttribute("name");
+            currentID = (Integer) session.getAttribute("sessionId");
+
+            UserHandler userH = new UserHandler();
+            ConversationHandler convH = new ConversationHandler();
+            User current =  userH.searchByEmail(userEmail);
+            users = userH.AllUsers();
+            currentID = current.getId();
+            convs = convH.searchAllConvsByUserID(currentID);
+        }
+        else{
+            response.sendRedirect("index.jsp");
+        }
+        %>
         <div class="h100">
             <div class="areaMain">
                 <div class="areaContacts">
