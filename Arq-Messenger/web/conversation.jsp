@@ -50,6 +50,9 @@
                              %>
                         </div>
                     </div>
+                        <div class="areaContacts">
+                            <p>HERE is </p>
+                        </div>
                     <div class="areaMessage">
                         <form action ="SendServlet" method="post" class="form-inline">
                             <input type="text" class="form-control" id="example1" value="<%=currentUserID %>" name="idUser">

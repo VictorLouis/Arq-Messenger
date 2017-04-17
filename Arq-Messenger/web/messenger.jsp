@@ -61,6 +61,17 @@
                     </div>
                     
                 </div>
+                        <div class="areaMessage">
+                            <div class="panel-heading">Crear Conversacion</div>
+                        <div class="panel-body">
+                        <form action ="CreateConversationServlet" method="post" class="form-inline">
+                            <input type="text" class="form-control" id="createC1" value="<%=currentID %>" name="idUserC">
+                            <input type="text" class="form-control" id="createC2" placeholder="targetUser" name="idUserT">
+                            <input type="text" class="form-control" id="createC3" placeholder="Nombre" name="nameC">
+                            <button type="submit" class="btn btn-success">Crear</button>
+                        </form>
+                            </div>
+                    </div>
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">

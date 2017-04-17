@@ -66,17 +66,17 @@ public class UserConversationDAO {
     
     }
     
-    public UserConversation searchOneUserConversationByConvID(int ConvId) {
-        EntityManager em = emf1.createEntityManager();
-           UserConversation userConversation = null;
+    public List<UserConversation> searchConversationsByConvID(int ConvId) {
+           EntityManager em = emf1.createEntityManager();
+           List<UserConversation> userConversation = null;
            Query q = em.createNamedQuery("UserConversation.findByIdConversation");
-           q.setParameter("idUser", ConvId);
+           q.setParameter("idConversation", ConvId);
            try {
-               userConversation = (UserConversation) q.getSingleResult();
+               userConversation = (List<UserConversation>) q.getResultList();
            } catch (Exception e){
            } finally {
                em.close();
-               return (UserConversation) userConversation;
+               return (List<UserConversation>) userConversation;
            }
     
     }
