@@ -6,11 +6,12 @@ import java.sql.Timestamp;
 import DataAccess.DAO.UserConversationDAO;
 import DataAccess.DAO.UserDAO;
 import DataAccess.Entity.User;
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.persistence.EntityManager;
 
-public class ConversationHandler {
+public class ConversationHandler implements Serializable{
      
     public String CreateConversation (int idUserCurrent, int idUserTarget, String Nombre ) { 
         

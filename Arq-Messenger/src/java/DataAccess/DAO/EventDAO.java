@@ -6,6 +6,7 @@
 package DataAccess.DAO;
 
 import DataAccess.Entity.Event;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,7 +16,7 @@ import javax.persistence.Query;
  *
  * @author arqsoft2017i
  */
-public class EventDAO {
+public class EventDAO implements Serializable{
 
     public EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("MessengerUNPU");
     public Event persist(Event event) {

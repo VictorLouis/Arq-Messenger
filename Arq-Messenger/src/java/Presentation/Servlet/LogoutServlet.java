@@ -7,6 +7,7 @@ package Presentation.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author arqsoft2017i
  */
 @WebServlet("/LogoutServlet")
-public class LogoutServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet implements Serializable{
 	private static final long serialVersionUID = 1L;
         
      /**

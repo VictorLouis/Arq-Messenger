@@ -8,6 +8,7 @@ package Presentation.Servlet;
 import Business.Logic.MessageHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 
 import javax.servlet.RequestDispatcher;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author arqsoft2017i
  */
 @WebServlet("/SendServlet")
-public class SendServlet extends HttpServlet{
+public class SendServlet extends HttpServlet implements Serializable{
     
     private static final long serialVersionUID = 1L;
     /**

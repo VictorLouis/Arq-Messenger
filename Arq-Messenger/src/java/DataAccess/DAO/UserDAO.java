@@ -6,6 +6,7 @@
 package DataAccess.DAO;
 
 import DataAccess.Entity.User;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,7 +16,7 @@ import java.util.List;
  *
  * @author arqsoft2017i
  */
-public class UserDAO {
+public class UserDAO implements Serializable{
 
     public EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("MessengerUNPU");
     public User persist(User account) {

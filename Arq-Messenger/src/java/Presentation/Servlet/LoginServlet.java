@@ -12,6 +12,7 @@ import Business.Logic.UserHandler;
 import DataAccess.Entity.Authentication;
 import DataAccess.Entity.User; 
 import DataAccess.DAO.AuthenticationDAO;
+import java.io.Serializable;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet implements Serializable{
     private static final long serialVersionUID = 1L;
 	
     /**

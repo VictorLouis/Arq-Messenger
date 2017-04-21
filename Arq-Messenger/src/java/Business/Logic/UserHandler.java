@@ -3,12 +3,13 @@ import DataAccess.DAO.UserDAO;
 import DataAccess.DAO.AuthenticationDAO;
 import DataAccess.Entity.User ; 
 import DataAccess.Entity.Authentication ; 
+import java.io.Serializable;
 import java.util.List;
 /**
  *
  * @author arqsoft2017i
  */ 
-public class UserHandler { 
+public class UserHandler implements Serializable { 
      
     public String createAccount ( String name, String passwordUser, String passwordUser2, String email ) { 
         

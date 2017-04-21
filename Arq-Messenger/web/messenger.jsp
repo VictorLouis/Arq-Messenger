@@ -19,12 +19,14 @@
         <%            
         String userEmail = null;
         Integer currentID = null; 
+        String httpSess = null;
         List<UserConversation> convs = null;
         List<User> users = null;
         session = request.getSession(false);
         if(session != null){
             userEmail = (String) session.getAttribute("name");
             currentID = (Integer) session.getAttribute("sessionId");
+            httpSess = session.getId();
 
             UserHandler userH = new UserHandler();
             ConversationHandler convH = new ConversationHandler();
@@ -75,7 +77,7 @@
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Hola <%=userEmail %> con id <%=currentID%> </a>
+                    <a class="navbar-brand" href="#">Hola <%=userEmail %> con id <%=httpSess%> </a>
                     <ul class="nav navbar-nav navbar-right">
                         <form action="LogoutServlet" method="post">
                     <input type="submit" value="Logout" >

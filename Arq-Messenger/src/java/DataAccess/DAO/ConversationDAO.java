@@ -10,6 +10,7 @@
  */
 package DataAccess.DAO;
 import DataAccess.Entity.Conversation;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +20,7 @@ import javax.persistence.Query;
  *
  * @author arqsoft2017i
  */
-public class ConversationDAO {
+public class ConversationDAO implements Serializable{
 
     public EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("MessengerUNPU");
     public Conversation persist(Conversation conversation) {

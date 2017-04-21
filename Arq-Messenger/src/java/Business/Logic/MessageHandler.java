@@ -5,6 +5,7 @@ import DataAccess.DAO.ConversationDAO;
 import DataAccess.Entity.Message;
 import DataAccess.Entity.User;
 import DataAccess.Entity.Conversation;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,10 +16,8 @@ import javax.persistence.EntityManager;
  *
  * @author arqsoft2017i
  */ 
-public class MessageHandler { 
-     
-   
-        
+public class MessageHandler implements Serializable{ 
+               
     public String createMessage (String text, int IdConversation, int IdUser) { 
            
         Message message = new Message ( ) ;

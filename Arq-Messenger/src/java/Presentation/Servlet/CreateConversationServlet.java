@@ -8,6 +8,7 @@ package Presentation.Servlet;
 import Business.Logic.ConversationHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 
 import javax.servlet.RequestDispatcher;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author arqsoft2017i
  */
 @WebServlet("/CreateConversationServlet")
-public class CreateConversationServlet extends HttpServlet{
+public class CreateConversationServlet extends HttpServlet implements Serializable{
     
     private static final long serialVersionUID = 1L;
     /**
