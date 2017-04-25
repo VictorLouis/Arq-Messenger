@@ -46,26 +46,22 @@ public class LoginServlet extends HttpServlet implements Serializable{
                 response.setContentType("text/html");  
 
 		// get request parameters for userID and password
-		String user = request.getParameter("user");
-		String pwd = request.getParameter("pwd");
+		String loginMail = request.getParameter("loginEmail");
+		String passw = request.getParameter("loginPwd");
                 
                 AuthenticationDAO accountDAO = new AuthenticationDAO ( ); 
-                Authentication accountE = accountDAO.searchUserLogin(user, pwd );
+                Authentication accountE = accountDAO.searchUserLogin(loginMail, passw);
                 
                 UserHandler uh = new UserHandler();
-                User loginUser = uh.searchByEmail(user);
+                User loginUser = uh.searchByEmail(loginMail);
                 
 		if(accountE != null){
-			/*Cookie loginCookie = new Cookie("user",user);
-			//setting cookie to expiry in 30 mins
-			loginCookie.setMaxAge(30*60);
-			response.addCookie(loginCookie);
-			response.sendRedirect("messenger.jsp");
-                        */
+                        HttpSession session = request.getSession(); 
                         
-                        HttpSession session=request.getSession();  
-                        session.setAttribute("name", user);  
-                        session.setAttribute("sessionId", loginUser.getId()); 
+                        session.setAttribute("userId", loginUser.getId()); 
+                        session.setAttribute("userName", loginUser.getName());  
+                        session.setAttribute("userEmail", loginMail);  
+                        
                         response.sendRedirect("messenger.jsp");
 		}else{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");

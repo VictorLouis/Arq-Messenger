@@ -5,8 +5,9 @@
         <group>
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Presentation/Servlet/AddPersonServlet.java</file>
             <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Business/Logic/ConversationHandler.java</file>
-            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Presentation/Servlet/CreateConversationServlet.java</file>
-            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/src/java/Presentation/Servlet/LoginServlet.java</file>
+            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/web/conversation.jsp</file>
+            <file>file:/home/arqsoft2017i/NetBeansProjects/Arq-Messenger/Arq-Messenger/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -16,24 +16,27 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     </head>
     <body>
-        <%            
+        <%    
+        Integer userId = null; 
         String userEmail = null;
-        Integer currentID = null; 
-        String httpSess = null;
+        String userName = null;
+        String httpSessID = null;
         List<UserConversation> convs = null;
         List<User> users = null;
+        
         session = request.getSession(false);
         if(session != null){
-            userEmail = (String) session.getAttribute("name");
-            currentID = (Integer) session.getAttribute("sessionId");
-            httpSess = session.getId();
+            userEmail = (String) session.getAttribute("userEmail");
+            userId = (Integer) session.getAttribute("userId");
+            userName = (String) session.getAttribute("userName");
+            httpSessID = session.getId();
 
             UserHandler userH = new UserHandler();
             ConversationHandler convH = new ConversationHandler();
             User current =  userH.searchByEmail(userEmail);
             users = userH.AllUsers();
-            currentID = current.getId();
-            convs = convH.searchAllConvsByUserID(currentID);
+            userId = current.getId();
+            convs = convH.searchAllConvsByUserID(userId);
         }
         else{
             response.sendRedirect("index.jsp");
@@ -67,7 +70,7 @@
                             <div class="panel-heading">Crear Conversacion</div>
                         <div class="panel-body">
                         <form action ="CreateConversationServlet" method="post" class="form-inline">
-                            <input type="text" class="form-control" id="createC1" value="<%=currentID %>" name="idUserC">
+                            <input type="text" class="form-control" id="createC1" value="<%=userId %>" name="idUserC">
                             <input type="text" class="form-control" id="createC2" placeholder="targetUser" name="idUserT">
                             <input type="text" class="form-control" id="createC3" placeholder="Nombre" name="nameC">
                             <button type="submit" class="btn btn-success">Crear</button>
@@ -77,7 +80,7 @@
             </div>
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Hola <%=userEmail %> con id <%=httpSess%> </a>
+                    <a class="navbar-brand" href="#">Hola <%=userName %>, ID de Sesion:  <%=httpSessID%> </a>
                     <ul class="nav navbar-nav navbar-right">
                         <form action="LogoutServlet" method="post">
                     <input type="submit" value="Logout" >

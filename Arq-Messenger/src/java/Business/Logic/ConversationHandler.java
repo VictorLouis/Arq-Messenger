@@ -86,6 +86,13 @@ public class ConversationHandler implements Serializable{
        
        return temp.searchConversationsByUserID(userID); 
    }
+   
+   public String searchConvNameByID(int convID){
+       
+       UserConversationDAO ucDAO = new UserConversationDAO();
+       
+       return ucDAO.searchConversationsByConvID(convID).get(1).getNombreConversacion();
+   }
        
     
 }

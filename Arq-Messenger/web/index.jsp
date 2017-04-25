@@ -33,11 +33,11 @@
                         <form action="LoginServlet" method="post">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Correo</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="user">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="loginEmail">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="loginPwd">
                             </div>
                             <div class="checkbox">
                                 <label>

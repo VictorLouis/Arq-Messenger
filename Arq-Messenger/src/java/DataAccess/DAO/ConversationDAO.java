@@ -80,10 +80,7 @@ public class ConversationDAO implements Serializable{
                return (Conversation) conversation;
            }
     
-    }
-    
-    
-           
+    }        
     
 }
 /*
