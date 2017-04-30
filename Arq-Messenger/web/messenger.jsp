@@ -48,7 +48,7 @@
                     <div class="list-group">
                         <%  
                             for (int i = 0; i < users.size(); i++) {
-                               out.print("<a href="+ "\" # \"" +"class="+"\"list-group-item\""+">" + users.get(i).getName()+ "</a>"); 
+                               out.print("<a href='/Arq-Messenger/ClickUserS?currentU="+ userId +"&"+"targetU="+ users.get(i).getId() +"&"+"convN="+ users.get(i).getName() +"'" + "target='_blank'" +"class="+"\"list-group-item\""+">" + users.get(i).getName()+ "</a>"); 
                             }  
                          %>  
                     </div>
@@ -59,7 +59,7 @@
                         <div class="panel-body">
                            <%    
                                 for (int i = 0; i < convs.size(); i++) {
-                                   out.print("<P>" + convs.get(i).getNombreConversacion() + "</p>"); 
+                                   out.print("<a href='/Arq-Messenger/ConversationS?cid="+ convs.get(i).getConversation().getId() +"' target='_blank'>" + convs.get(i).getNombreConversacion() + "</a>"); 
                                 }  
                              %>
                         </div>

@@ -7,9 +7,7 @@ package Presentation.Servlet;
 
 import Business.Logic.ConversationHandler;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,8 +44,6 @@ public class CreateConversationServlet extends HttpServlet implements Serializab
                 String res = handC.CreateConversation(currentUserID, targetUserID, convName);
                 
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/messenger.jsp");
-                PrintWriter out= response.getWriter();
-		out.println("<font color=red>" + res + "</font>");
 		rd.include(request, response);
 
 	}

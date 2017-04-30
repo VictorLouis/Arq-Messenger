@@ -5,10 +5,9 @@
  */
 package Presentation.Servlet;
 
-import Business.Logic.MessageHandler;
+import Business.Logic.ConversationHandler;
 import java.io.IOException;
 import java.io.Serializable;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author arqsoft2017i
  */
-@WebServlet("/SendServlet")
-public class SendServlet extends HttpServlet implements Serializable{
+@WebServlet("/ClickUserS")
+public class ClickUserServlet extends HttpServlet implements Serializable{
     
     private static final long serialVersionUID = 1L;
     /**
@@ -33,20 +32,16 @@ public class SendServlet extends HttpServlet implements Serializable{
      * @throws IOException
      */
     @Override
-    protected void doPost(HttpServletRequest request,
+    protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		// get request parameters for userID and password
-		Integer userID = Integer.parseInt(request.getParameter("idUser"));
-                Integer convID = Integer.parseInt(request.getParameter("idConv"));
-                String textmsg = request.getParameter("msg");
-                
-                MessageHandler msgH = new MessageHandler();
-                String res = msgH.createMessage(textmsg, convID, userID);
-                
-                request.setAttribute("cid", convID);
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/conversation.jsp");
-		rd.include(request, response);	
-	}
+        
+        Integer currentUserID = Integer.parseInt(request.getParameter("currentU"));
+        Integer targetUserID = Integer.parseInt(request.getParameter("targetU"));
+        String convName = request.getParameter("convN");
+        
+        System.out.println(currentUserID);
+        System.out.println(targetUserID);
+        System.out.println(convName);        
+    }
     
 }

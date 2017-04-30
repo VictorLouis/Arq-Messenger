@@ -94,7 +94,7 @@ public class ConversationHandler implements Serializable{
        return ucDAO.searchConversationsByConvID(convID).get(1).getNombreConversacion();
    }
        
-    
+   
 }
    
 

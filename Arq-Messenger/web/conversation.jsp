@@ -22,7 +22,7 @@
         String httpSessID = null;
         String conversationName = null;
         List<Message> msgs = null;
-        Integer ConvID = 1;
+        Integer ConvID = (Integer) request.getAttribute("cid");
         
         session = request.getSession(false);
         if(session != null){
@@ -51,18 +51,19 @@
                                 } 
                              %>
                         </div>
-                    </div>
-                        <div class="areaContacts">
-                            <p>HERE is </p>
-                        </div>
-                    <div class="areaMessage">
+                    </div> 
+                        <div class="areaMessage">
                         <form action ="SendServlet" method="post" class="form-inline">
-                            <input type="text" class="form-control" id="example1" value="<%=userId %>" name="idUser">
-                            <input type="text" class="form-control" id="example2" value="<%=ConvID %>" name="idConv">
+                            <input type="hidden" class="form-control" id="example1" value="<%=userId %>" name="idUser">
+                            <input type="hidden" class="form-control" id="example2" value="<%=ConvID %>" name="idConv">
                             <input type="text" class="form-control" id="exampleInputAmount" placeholder="Mensaje" name="msg">
                             <button type="submit" class="btn btn-success">Enviar</button>
                         </form>
-                    </div>
+                </div>
+                </div>
+                
+                <div class="areaContacts">
+                    <p>Add Person</p>
                 </div>
             </div>            
             <nav class="navbar navbar-default navbar-fixed-top">
